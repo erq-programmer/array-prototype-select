@@ -16,12 +16,11 @@
 // - arr.select(-5,,) => [5,6,7,8,9]
 // - arr.select(,-5,) => [0,1,2,3,4]
 // - arr.select(-2,-5,) => [5,6,7]
-
 interface Array<T> {
-  select(startIdx: number, endIdx: number, step: number): Array<T>;
+  select(startIdx?: number, endIdx?: number, step?: number): Array<T>;
 }
 
-function select<T>(
+function selected<T>(
   startIdx: number = 0,
   endIdx: number = 0,
   step: number = 1
@@ -41,6 +40,4 @@ function select<T>(
   return temp;
 }
 
-Array.prototype.select = select;
-
-exports.module = select;
+Array.prototype.select = selected;
