@@ -17,12 +17,30 @@
 // - arr.select(,-5,) => [0,1,2,3,4]
 // - arr.select(-2,-5,) => [5,6,7]
 
-Array.prototype.select = function (
-  startIdx: number,
-  endIdx: number,
-  step: number = 1
-) {
-  console.log('xd');
-};
+interface Array<T> {
+  select(startIdx: number, endIdx: number, step: number): Array<T>;
+}
 
-// Pseudokod
+function select<T>(
+  startIdx: number = 0,
+  endIdx: number = 0,
+  step: number = 1
+): Array<T> {
+  let temp: Array<T> = this;
+
+  if (startIdx < 0 && Math.abs(startIdx) < Math.abs(endIdx))
+    temp = temp.slice(endIdx, startIdx);
+  else if (startIdx !== 0 && endIdx > 0) temp = temp.slice(startIdx, endIdx);
+  else if (startIdx !== 0) temp = temp.slice(startIdx);
+  else if (endIdx !== 0) temp = temp.slice(0, endIdx);
+
+  if (step > 1) {
+    temp = temp.filter((_, idx) => idx % step === 0);
+  }
+
+  return temp;
+}
+
+Array.prototype.select = select;
+
+exports.module = select;

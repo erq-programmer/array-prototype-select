@@ -19,5 +19,7 @@
     "typescript": "^4.0.2"
   },
   "type": "module",
-  "dependencies": {}
+  "dependencies": {
+    "lodash": "^4.17.20"
+  }
 }
